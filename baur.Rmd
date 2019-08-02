@@ -1,0 +1,48 @@
+---
+title: "Baur"
+author: "Michael Kahle"
+date: "2 8 2019"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Baur Serie
+
+
+Monthly Temperature data of Central Europe (~Germany) as taken from
+https://de.wikipedia.org/wiki/Zeitreihe_der_Lufttemperatur_in_Deutschland#Messwerte_in_Dekaden
+
+
+```{r}
+#install.packages("ggplot2")
+require("ggplot2")
+color.temperature <- c("#0000FF", "#00CCCC", "#FFFFFF", "#EEAA33", "#FF5555")
+#setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+py <- read.csv("baur_monthly.csv", sep=";")
+py2 <- subset(py, !is.na(py$temperature))
+```
+
+## Plot Month-Table
+
+```{r monthly, echo=FALSE}
+mp <- ggplot(py2, aes(year, month))
+mp + geom_raster(aes(fill=temperature))+
+  scale_y_continuous(breaks=c(1,6,12))+
+  theme(panel.background = element_rect(fill = '#EEEEEE', colour = 'white'), legend.position="right", text=element_text(size=14, family="Calibri"))+
+  scale_fill_gradientn(colours=color.temperature)
+```
+
+## Plot more classical diagram
+
+```{r classical, echo=FALSE}
+mp <- ggplot()
+jan <- subset(py2, py2$month == 1)
+jul <- subset(py2, py2$month == 7)
+mp + geom_line(aes(y=jan$temperature, x=jan$year)) + 
+     geom_line(aes(y=jul$temperature, x=jul$year))
+```
