@@ -30,7 +30,7 @@ py2 <- subset(py, !is.na(py$temperature))
 
 ## Plot Month-Table
 
-```{r monthly, echo=FALSE}
+```{r monthly, echo=TRUE}
 mp <- ggplot(py2, aes(year, month))
 mp + geom_raster(aes(fill=temperature))+
   scale_y_continuous(breaks=c(1,6,12))+
@@ -40,7 +40,7 @@ mp + geom_raster(aes(fill=temperature))+
 
 ## Plot more classical diagram
 
-```{r classical, echo=FALSE}
+```{r classical, echo=TRUE}
 mp <- ggplot()
 jan <- subset(py2, py2$month == 1)
 jul <- subset(py2, py2$month == 7)
