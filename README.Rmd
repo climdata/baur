@@ -47,3 +47,18 @@ jul <- subset(py2, py2$month == 7)
 mp + geom_line(aes(y=jan$temperature, x=jan$year)) + 
      geom_line(aes(y=jul$temperature, x=jul$year))
 ```
+
+## Work with yearly
+
+```{r yearly, echo=TRUE}
+#install.packages("data.table")
+library(data.table)
+library(zoo)
+
+py3 <- read.csv("https://raw.githubusercontent.com/climdata/baur/master/baur_yearly.csv", sep=";")
+avg <- rollapply(py3, width=30, by=1, FUN=mean)
+avg$year = py3$year[30:]
+std <- rollapply(py3, width=30, by=1, FUN=stddev)
+
+setDT(py3)[,.(avgjan=mean(jan)), year-0:30]
+```
