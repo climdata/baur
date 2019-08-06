@@ -66,6 +66,78 @@ mp + geom_line(aes(y=jan$temperature, x=jan$year)) +
 
 ![](README_files/figure-html/classical-1.png)<!-- -->
 
+## Plot timeline
+
+
+```r
+mp <- ggplot()
+mp + geom_line(aes(y=py2$temperature, x=py2$time)) 
+```
+
+![](README_files/figure-html/fft-1.png)<!-- -->
+
+```r
+py7<- fft(py2$temperature, inverse = FALSE)
+
+border1 <- mean(Mod(py7)) + 1*sd(Mod(py7))
+border2 <- 0.3*sd(Mod(py7))
+py8 <- py7 
+py8 <- replace(py8, Mod(py8)>border1, 0.0)
+#py8 <- replace(py8, Mod(py8)<border2, 0.0)
+py8[0:2] <- py7[0:2]
+py8[(length(py8) - 3):length(py8)] <- py7[(length(py7) - 3):length(py7)]
+#py8[10:14] <- 0.0
+#py8[(length(py8) - 14):length(py8)-10] <- 0.0
+
+py9 <- py2
+py9$temperature <- Mod(fft(py8, inverse = TRUE))/length(py8)
+
+#py9 <- subset(py9, py9$year >= 1980)
+
+mp <- ggplot()
+mp + geom_line(aes(y=py9$temperature, x=py9$time)) 
+```
+
+![](README_files/figure-html/fft-2.png)<!-- -->
+
+```r
+  plot.data  <- cbind(0:(length(py7)-1), Mod(py7))
+
+  # TODO: why this scaling is necessary?
+  plot.data[2:length(py7),2] <- 2*plot.data[2:length(py7),2] 
+  
+  plot(plot.data, t="h", lwd=2, main="", 
+       xlab="Frequency (Hz)", ylab="Strength", 
+       xlim=c(0,length(py7)), ylim=c(0,max(Mod(plot.data[,2]))))
+```
+
+![](README_files/figure-html/fft-3.png)<!-- -->
+
+```r
+  py7 <- py8
+  
+    plot.data  <- cbind(0:(length(py7)-1), Mod(py7))
+
+  # TODO: why this scaling is necessary?
+  plot.data[2:length(py7),2] <- 2*plot.data[2:length(py7),2] 
+  
+  plot(plot.data, t="h", lwd=2, main="", 
+       xlab="Frequency (Hz)", ylab="Strength", 
+       xlim=c(0,500), ylim=c(0,5000))
+```
+
+![](README_files/figure-html/fft-4.png)<!-- -->
+
+```r
+  mp <- ggplot(py9, aes(year, month))
+mp + geom_raster(aes(fill=temperature))+
+  scale_y_continuous(breaks=c(1,6,12))+
+  theme(panel.background = element_rect(fill = '#EEEEEE', colour = 'white'), legend.position="right", text=element_text(size=14))+
+  scale_fill_gradientn(colours=color.temperature)
+```
+
+![](README_files/figure-html/fft-5.png)<!-- -->
+
 ## Work with yearly and moving/rolling normalization
 
 

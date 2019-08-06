@@ -55,7 +55,7 @@ mp + geom_line(aes(y=jan$temperature, x=jan$year)) +
 
 ## Plot timeline
 
-```{r classical, echo=TRUE}
+```{r fft, echo=TRUE}
 mp <- ggplot()
 mp + geom_line(aes(y=py2$temperature, x=py2$time)) 
 
