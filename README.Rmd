@@ -20,7 +20,7 @@ https://de.wikipedia.org/wiki/Zeitreihe_der_Lufttemperatur_in_Deutschland#Messwe
 
 ### Create plain monthly series
 
-```{sh monthly}
+```{sh csv}
 python ./source/yearly_monthly.py
 ```
 
@@ -29,7 +29,7 @@ python ./source/yearly_monthly.py
 require("ggplot2")
 color.temperature <- c("#0000FF", "#00CCCC", "#FFFFFF", "#EEAA33", "#FF5555")
 #setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-py <- read.csv("https://raw.githubusercontent.com/climdata/baur/master/csv/baur_monthly.csv", sep=";")
+py <- read.csv("https://raw.githubusercontent.com/climdata/baur/master/csv/baur_monthly.csv", sep=",")
 py2 <- subset(py, !is.na(py$temperature))
 ```
 
@@ -60,10 +60,10 @@ mp + geom_line(aes(y=jan$temperature, x=jan$year)) +
 library(data.table)
 library(zoo)
 
-py3 <- read.csv("https://raw.githubusercontent.com/climdata/baur/master/csv/baur_yearly.csv", sep=";")
+py3 <- read.csv("https://raw.githubusercontent.com/climdata/baur/master/csv/baur_yearly.csv", sep=",")
 avg <- rollapply(py3, width=30, by=1, FUN=mean)
-avg$year = py3$year[30:]
-std <- rollapply(py3, width=30, by=1, FUN=stddev)
+#avg$year = py3$year[30:]
+#std <- rollapply(py3, width=30, by=1, FUN=stddev)
 
-setDT(py3)[,.(avgjan=mean(jan)), year-0:30]
+
 ```
