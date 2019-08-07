@@ -33,10 +33,6 @@ require("ggplot2")
 ## Loading required package: ggplot2
 ```
 
-```
-## Warning: package 'ggplot2' was built under R version 3.5.3
-```
-
 ```r
 color.temperature <- c("#0000FF", "#00CCCC", "#FFFFFF", "#EEAA33", "#FF5555")
 #setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
@@ -55,7 +51,7 @@ mp + geom_raster(aes(fill=temperature))+
   scale_fill_gradientn(colours=color.temperature)
 ```
 
-![](README_files/figure-html/monthly-1.png)<!-- -->
+![](README_files/figure-html/plot-1.png)<!-- -->
 
 ## Plot more classical diagram
 
