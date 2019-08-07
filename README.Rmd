@@ -41,6 +41,8 @@ mp + geom_raster(aes(fill=temperature))+
   scale_y_continuous(breaks=c(1,6,12))+
   theme(panel.background = element_rect(fill = '#EEEEEE', colour = 'white'), legend.position="right", text=element_text(size=14))+
   scale_fill_gradientn(colours=color.temperature)
+
+#hist(py2$temperature)
 ```
 
 ## Plot more classical diagram
@@ -49,8 +51,11 @@ mp + geom_raster(aes(fill=temperature))+
 mp <- ggplot()
 jan <- subset(py2, py2$month == 1)
 jul <- subset(py2, py2$month == 7)
-mp + geom_line(aes(y=jan$temperature, x=jan$year)) + 
-     geom_line(aes(y=jul$temperature, x=jul$year))
+mp + geom_line(aes(y=jan$temperature, x=jan$year), color="blue") + 
+     geom_line(aes(y=jul$temperature, x=jul$year), color="red")
+
+#hist(jan$temperature)
+#hist(jul$temperature)
 ```
 
 ## Plot timeline
@@ -106,6 +111,20 @@ mp + geom_raster(aes(fill=temperature))+
   theme(panel.background = element_rect(fill = '#EEEEEE', colour = 'white'), legend.position="right", text=element_text(size=14))+
   scale_fill_gradientn(colours=color.temperature)
   
+#hist(py9$temperature)
+```
+
+## Plot summer and winter of filtered set
+
+```{r seasons, echo=TRUE}
+mp <- ggplot()
+jan <- subset(py9, py9$month == 1)
+jul <- subset(py9, py9$month == 7)
+mp + geom_line(aes(y=jan$temperature, x=jan$year), color="blue") + 
+     geom_line(aes(y=jul$temperature, x=jul$year), color="red")
+
+#hist(jan$temperature)
+#hist(jul$temperature)
 ```
 
 ## Work with yearly and moving/rolling normalization
@@ -143,6 +162,8 @@ mp + geom_raster(aes(fill=temperature))+
   scale_y_continuous(breaks=c(1,6,12))+
   theme(panel.background = element_rect(fill = '#EEEEEE', colour = 'white'), legend.position="right", text=element_text(size=14))+
   scale_fill_gradientn(colours=color.temperature)
+
+#hist(norm$temperature)
 
 ```
 
@@ -182,5 +203,7 @@ mp + geom_raster(aes(fill=temperature))+
   scale_y_continuous(breaks=c(1,6,12))+
   theme(panel.background = element_rect(fill = '#EEEEEE', colour = 'white'), legend.position="right", text=element_text(size=14))+
   scale_fill_gradientn(colours=color.temperature)
+
+#hist(norm$temperature)
 
 ```

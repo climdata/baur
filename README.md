@@ -60,8 +60,8 @@ mp + geom_raster(aes(fill=temperature))+
 mp <- ggplot()
 jan <- subset(py2, py2$month == 1)
 jul <- subset(py2, py2$month == 7)
-mp + geom_line(aes(y=jan$temperature, x=jan$year)) + 
-     geom_line(aes(y=jul$temperature, x=jul$year))
+mp + geom_line(aes(y=jan$temperature, x=jan$year), color="blue") + 
+     geom_line(aes(y=jul$temperature, x=jul$year), color="red")
 ```
 
 ![](README_files/figure-html/classical-1.png)<!-- -->
@@ -137,6 +137,19 @@ mp + geom_raster(aes(fill=temperature))+
 ```
 
 ![](README_files/figure-html/fft-5.png)<!-- -->
+
+## Plot summer and winter of filtered set
+
+
+```r
+mp <- ggplot()
+jan <- subset(py9, py9$month == 1)
+jul <- subset(py9, py9$month == 7)
+mp + geom_line(aes(y=jan$temperature, x=jan$year), color="blue") + 
+     geom_line(aes(y=jul$temperature, x=jul$year), color="red")
+```
+
+![](README_files/figure-html/seasons-1.png)<!-- -->
 
 ## Work with yearly and moving/rolling normalization
 
