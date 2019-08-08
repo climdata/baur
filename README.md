@@ -53,6 +53,10 @@ mp + geom_raster(aes(fill=temperature))+
 
 ![](README_files/figure-html/plot-1.png)<!-- -->
 
+```r
+#hist(py2$temperature)
+```
+
 ## Plot more classical diagram
 
 
@@ -65,6 +69,11 @@ mp + geom_line(aes(y=jan$temperature, x=jan$year), color="blue") +
 ```
 
 ![](README_files/figure-html/classical-1.png)<!-- -->
+
+```r
+#hist(jan$temperature)
+#hist(jul$temperature)
+```
 
 ## Plot timeline
 
@@ -88,11 +97,16 @@ py8[0:2] <- py7[0:2]
 py8[(length(py8) - 3):length(py8)] <- py7[(length(py7) - 3):length(py7)]
 #py8[10:14] <- 0.0
 #py8[(length(py8) - 14):length(py8)-10] <- 0.0
+py8[520:(length(py8) - 520)] <- 0.0
+#py8[260:(length(py8)-260)] <- 0.0
+py8[130:(length(py8)-130)] <- 0.0
+
+#3198/12
 
 py9 <- py2
 py9$temperature <- Mod(fft(py8, inverse = TRUE))/length(py8)
 
-#py9 <- subset(py9, py9$year >= 1980)
+py9 <- subset(py9, py9$year >= 1752)
 
 mp <- ggplot()
 mp + geom_line(aes(y=py9$temperature, x=py9$time)) 
@@ -138,6 +152,10 @@ mp + geom_raster(aes(fill=temperature))+
 
 ![](README_files/figure-html/fft-5.png)<!-- -->
 
+```r
+#hist(py9$temperature)
+```
+
 ## Plot summer and winter of filtered set
 
 
@@ -150,6 +168,11 @@ mp + geom_line(aes(y=jan$temperature, x=jan$year), color="blue") +
 ```
 
 ![](README_files/figure-html/seasons-1.png)<!-- -->
+
+```r
+#hist(jan$temperature)
+#hist(jul$temperature)
+```
 
 ## Work with yearly and moving/rolling normalization
 
@@ -204,6 +227,10 @@ mp + geom_raster(aes(fill=temperature))+
 
 ![](README_files/figure-html/rolling-norm-1.png)<!-- -->
 
+```r
+#hist(norm$temperature)
+```
+
 
 
 ## Work with yearly and fixed normalization
@@ -244,3 +271,7 @@ mp + geom_raster(aes(fill=temperature))+
 ```
 
 ![](README_files/figure-html/fixed-norm-1.png)<!-- -->
+
+```r
+#hist(norm$temperature)
+```
