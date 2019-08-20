@@ -9,7 +9,7 @@ import codecs
 fileName1='./csv/baur_yearly.csv'
 fileName2='./csv/baur_monthly.csv'
 
-months = ['jan','feb','mar','apr','mai','jun','jul','aug','sep','oct','nov','dec']
+months = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec']
 baurData = {}
 
 with open(fileName1, "r") as ins:

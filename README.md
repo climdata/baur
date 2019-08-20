@@ -33,6 +33,10 @@ require("ggplot2")
 ## Loading required package: ggplot2
 ```
 
+```
+## Warning: package 'ggplot2' was built under R version 3.5.3
+```
+
 ```r
 color.temperature <- c("#0000FF", "#00CCCC", "#FFFFFF", "#EEAA33", "#FF5555")
 #setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
