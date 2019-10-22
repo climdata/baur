@@ -6,7 +6,7 @@ Created on Fri Aug  2 13:54:41 2019
 """
 
 import codecs
-fileName1='./csv/baur_yearly.csv'
+fileName1='./raw/baur_yearly.csv'
 fileName2='./csv/baur_monthly.csv'
 
 months = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec']
@@ -39,11 +39,11 @@ with open(fileName1, "r") as ins:
   
 
 csvfile2 = codecs.open(fileName2, "w", "utf-8")
-csvfile2.write("year,month,time,m,temperature\n")
+csvfile2.write("year,month,time,ts,m,temperature\n")
 for year in sorted(baurData):
  m=1   
  for month in months:
-   time = float(year)+(m-1.0)/12.0
-   csvfile2.write(year+","+str(m)+","+str(time)+","+month+","+baurData[year][month]+"\n") 
+   time = float(year)+(m-0.5)/12.0
+   csvfile2.write(year+","+str(m)+","+year+"-"+str(m)+"-15 00:00:00"+","+str(time)+","+month+","+baurData[year][month]+"\n") 
    m+=1
 csvfile2.close()             

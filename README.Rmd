@@ -62,7 +62,7 @@ mp + geom_line(aes(y=jan$temperature, x=jan$year), color="blue") +
 
 ```{r fft, echo=TRUE}
 mp <- ggplot()
-mp + geom_line(aes(y=py2$temperature, x=py2$time)) 
+mp + geom_line(aes(y=py2$temperature, x=py2$ts)) 
 
 py7<- fft(py2$temperature, inverse = FALSE)
 
@@ -87,7 +87,7 @@ py9$temperature <- Mod(fft(py8, inverse = TRUE))/length(py8)
 py9 <- subset(py9, py9$year >= 1752)
 
 mp <- ggplot()
-mp + geom_line(aes(y=py9$temperature, x=py9$time)) 
+mp + geom_line(aes(y=py9$temperature, x=py9$ts)) 
 
   plot.data  <- cbind(0:(length(py7)-1), Mod(py7))
 
@@ -139,7 +139,7 @@ mp + geom_line(aes(y=jan$temperature, x=jan$year), color="blue") +
 library(data.table)
 library(zoo)
 
-py3 <- read.csv("https://raw.githubusercontent.com/climdata/baur/master/csv/baur_yearly.csv", sep=",")
+py3 <- read.csv("https://raw.githubusercontent.com/climdata/baur/master/raw/baur_yearly.csv", sep=",")
 avg <- rollapply(py3, width=30, by=1, FUN=mean)
 x <-tail(py3, n=-30)
 std <- rollapply(py3, width=30, by=1, FUN=sd)
@@ -153,7 +153,7 @@ names(tmp)[names(tmp) == "jan"] <- "temperature"
 tmp$month <- rep(1,nrow(tmp))
 norm <- tmp
 m <- 2
-for (month in c("feb","mar","apr","mai","jun","jul","aug","sep","oct","nov","dec")) {
+for (month in c("feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec")) {
   tmp <-py4[,c("year",month)]
   names(tmp)[names(tmp) == month] <- "temperature"
   tmp$month <- rep(m,nrow(tmp))
@@ -181,7 +181,7 @@ mp + geom_raster(aes(fill=temperature))+
 library(data.table)
 library(zoo)
 
-py3 <- read.csv("https://raw.githubusercontent.com/climdata/baur/master/csv/baur_yearly.csv", sep=",")
+py3 <- read.csv("https://raw.githubusercontent.com/climdata/baur/master/raw/baur_yearly.csv", sep=",")
 
 tmp <-py3[,c("year","jan")]
 names(tmp)[names(tmp) == "jan"] <- "temperature"
@@ -191,7 +191,7 @@ tmp$temperature <- (tmp$temperature-avg)/std
 tmp$month <- rep(1,nrow(tmp))
 norm <- tmp
 m <- 2
-for (month in c("feb","mar","apr","mai","jun","jul","aug","sep","oct","nov","dec")) {
+for (month in c("feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec")) {
   tmp <-py3[,c("year",month)]
   names(tmp)[names(tmp) == month] <- "temperature"
   avg <- mean(tmp$temperature, na.rm = TRUE)
