@@ -7,7 +7,7 @@ Created on Fri Aug  2 13:54:41 2019
 
 import codecs
 fileName1='./raw/baur_yearly.csv'
-fileName2='./csv/baur_monthly.csv'
+fileName2='./raw/baur_monthly.csv'
 
 months = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec']
 baurData = {}
