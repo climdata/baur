@@ -24,7 +24,25 @@ https://de.wikipedia.org/wiki/Zeitreihe_der_Lufttemperatur_in_Deutschland#Messwe
 python ./source/yearly_monthly.py
 ```
 
-```{r}
+
+```{r enhance}
+t1 <- read.csv("https://raw.githubusercontent.com/climdata/baur/master/raw/baur_monthly.csv", sep=",")
+t1new <- t1[, c("year","month","ts","time","temperature")]
+t2 <- read.csv("https://raw.githubusercontent.com/climdata/dwdTemperature/master/csv/monthly_temperature_de.csv", sep=",", na = "NA")
+t2new <- subset(t2, t2$ts>max(t1$ts))
+t2new <- t2new[, c("year","month","ts","time","Deutschland")]
+names(t2new)[names(t2new) == 'Deutschland'] <- 'temperature'
+t1new <- rbind(t1new, t2new)
+t1new <- t1new[order(t1new$ts),]
+
+write.table(t1new, file = "csv/baur_monthly.csv", append = FALSE, quote = TRUE, sep = ",",
+            eol = "\n", na = "NA", dec = ".", row.names = FALSE,
+            col.names = TRUE, qmethod = "escape", fileEncoding = "UTF-8")
+
+```
+
+
+```{r load}
 #install.packages("ggplot2")
 require("ggplot2")
 color.temperature <- c("#0000FF", "#00CCCC", "#FFFFFF", "#EEAA33", "#FF5555")
