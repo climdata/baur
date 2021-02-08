@@ -202,7 +202,18 @@ mp + geom_line(aes(y=jan$temperature, x=jan$year), color="blue") +
 ```r
 #install.packages("data.table")
 library(data.table)
+```
+
+```
+## Warning: package 'data.table' was built under R version 3.5.3
+```
+
+```r
 library(zoo)
+```
+
+```
+## Warning: package 'zoo' was built under R version 3.5.3
 ```
 
 ```
