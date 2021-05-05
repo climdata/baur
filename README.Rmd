@@ -155,6 +155,7 @@ mp + geom_line(aes(y=jan$temperature, x=jan$year), color="blue") +
 ```{r rolling-norm, echo=TRUE}
 #install.packages("data.table")
 library(data.table)
+#install.packages("zoo")
 library(zoo)
 
 py3 <- read.csv("https://raw.githubusercontent.com/climdata/baur/master/raw/baur_yearly.csv", sep=",")
