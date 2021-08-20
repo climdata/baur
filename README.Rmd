@@ -28,7 +28,9 @@ python ./source/yearly_monthly.py
 ```{r enhance}
 tBaur <- read.csv("https://raw.githubusercontent.com/climdata/baur/master/raw/baur_monthly.csv", sep=",")
 tBaurAll <- tBaur[, c("year","month","ts","time","temperature")]
+tBaurAll$ts <- signif(tBaurAll$year + (tBaurAll$month-0.5)/12, digits=6)
 tDwd <- read.csv("https://raw.githubusercontent.com/climdata/dwdTemperature/master/csv/monthly_temperature_de.csv", sep=",", na = "NA")
+tDwd$ts <- signif(tDwd$year + (tDwd$month-0.5)/12, digits=6)
 
 tBaurOld <- subset(tBaurAll, tBaurAll$ts<min(tDwd$ts))
 tDwdGer <- tDwd[, c("year","month","ts","time","Deutschland")]
