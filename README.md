@@ -20,7 +20,7 @@ https://de.wikipedia.org/wiki/Zeitreihe_der_Lufttemperatur_in_Deutschland#Messwe
 
 
 ```sh
-python ./source/yearly_monthly.py
+python3 ./source/yearly_monthly.py
 ```
 
 
