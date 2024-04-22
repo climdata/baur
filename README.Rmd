@@ -21,7 +21,7 @@ https://de.wikipedia.org/wiki/Zeitreihe_der_Lufttemperatur_in_Deutschland#Messwe
 ### Create plain monthly series
 
 ```{sh csv}
-python ./source/yearly_monthly.py
+python3 ./source/yearly_monthly.py
 ```
 
 
