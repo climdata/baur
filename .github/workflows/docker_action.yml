@@ -5,7 +5,7 @@ name: docker_action:0.0
 on:
   push:
     branches:
-      - 'main'
+      - 'master'
   workflow_dispatch:
   schedule:
     # * is a special character in YAML so you have to quote this string : weekly,Sunday,11:00 #m h d/m m d/w 
